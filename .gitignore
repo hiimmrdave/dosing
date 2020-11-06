@@ -1,0 +1,8 @@
+node_modules
+index.js
+node_modules
+.vscode
+haters
+.cache
+.DS_Store
+*.env

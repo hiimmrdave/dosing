@@ -1,0 +1,26 @@
+{
+  "name": "dosing",
+  "version": "0.0.1",
+  "description": "calculate drug doses and form anesthetic plans for veterinary patients",
+  "main": "index.js",
+  "type": "module",
+  "module": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dave Vogt",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-datasource-rest": "^0.9.5",
+    "apollo-server": "^2.19.0",
+    "esm": "^3.2.25",
+    "graphql": "^15.4.0",
+    "pg": "^8.4.2"
+  },
+  "devDependencies": {
+    "eslint": "^7.12.1",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "prettier": "^2.1.2"
+  }
+}
