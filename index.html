@@ -3,12 +3,37 @@
   <head>
     <title>Get drug data by NDC</title>
     <script src="js/main.js"></script>
+    <link rel="stylesheet" href="css/screen.css">
   </head>
   <p>Enter the NDC number from your package and receive the data</p>
-  <form method="post">
+  <form>
     <label for="package_ndc">Package NDC: </label>
     <input type="text" id="package_ndc" />
-    <button type="button" id="find">Get Data</button>
+    <input type="button" id="find" value="Get Data"></input>
   </form>
   <p id="drugdata"></p>
+  <form>
+    <label for="product_ndc">Product NDC: </label>
+    <input type="text" id="product_ndc" />
+    <label for="dea_schedule">DEA Schedule: </label>
+    <select id="dea_schedule" name="dea_schedule">
+      <option selected>None</option>
+      <option disabled>CI</option>
+      <option>CII</option>
+      <option>CIII</option>
+      <option>CIV</option>
+      <option>CV</option>
+    </select>
+    <label for="dosage_form">Dosage Form: </label>
+    <input type="text" id="dosage_form" /><br />
+    <label for="route">Routes: </label>
+    <textarea id="route" cols="40" rows="3"></textarea>
+    <label for="active_ingredients">Active Ingredients: </label>
+    <textarea id="active_ingredients" cols="40" rows="3"></textarea>
+    <br />
+    <label for="doses">Doses: </label>
+    <textarea id="doses" cols="40" rows="3"></textarea>
+    <p>(one per line, in <span id="dosetype"></span>/kg<span id="drug"></span>)</p>
+    <input type="button" id="save" value="Add a drug"></input>
+  </form>
 </html>
