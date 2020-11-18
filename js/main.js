@@ -51,7 +51,6 @@ document.addEventListener("DOMContentLoaded", () => {
     ndcInput = document.getElementById("package_ndc");
 
   fetchButton.addEventListener("click", () => {
-    let product = {};
     getDrug(ndcInput.value).then(handleDrug);
   });
 });
