@@ -4,5 +4,16 @@ textarea {
 
 .error {
   font-size: 1.2rem;
-  color: hsl(0, 90%, 40%);
+  color: hsl(0, 90%, 35%);
+}
+
+label, input[type=text] {
+  margin-block-end: 0.5em;
+  display: inline-block;
+}
+
+textarea, select, input[type=text]  {
+  padding: 0.2ch;
+  border-radius: 0.5em;
+  border-color: hsl(220, 90%, 70%);
 }
