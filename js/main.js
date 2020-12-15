@@ -10,38 +10,52 @@ async function getDrug(package_ndc) {
   return response.results[0];
 }
 
-function handleDrug(result) {
-  output = document.getElementById("drugdata");
-  if (result.error) {
+function clearForm(formId) {
+  let form = document.querySelectorAll(
+    `#${formId} input[type=text], #${formId} textarea, #${formId} select`
+  );
+  form.forEach((e) => {
+    e.value = "";
+  });
+}
+
+function handleOutput(response, output) {
+  if (response.error) {
     output.classList.add("error");
-    output.innerHTML = `${result.error.code}: ${result.error.message}`;
-  }
-  if (result.product_ndc) {
+    output.innerHTML = `${response.error.code}: ${response.error.message}`;
+  } else {
     output.classList.remove("error");
     output.innerHTML = "Please confirm all data below";
-    for (key in result) {
-      const formItem = document.getElementById(key);
-      let value = Array.isArray(result[key])
-        ? result[key].join("\r\n")
-        : result[key];
-      if (key === "active_ingredients") {
-        value = result[key]
-          .reduce((acc, curr) => [...acc, `${curr.name} ${curr.strength}`], [])
-          .join("\r\n");
-        const dosetype = document.getElementById("dosetype"),
-          ofDrug = document.getElementById("drug");
-        dosetype.innerText = result[key][0].strength
-          .split(" ")[1]
-          .split("/")[0];
-        ofDrug.innerText = "";
-        if (result[key].length > 1) {
-          ofDrug.innerText = ` of ${result[key][0].name}`;
-        }
+  }
+}
+
+function handleDrug(result) {
+  output = document.getElementById("drugdata");
+  handleOutput(result, output);
+  clearForm("drugform");
+  if (result.error) {
+    return;
+  }
+  for (key in result) {
+    const formItem = document.getElementById(key);
+    let value = Array.isArray(result[key])
+      ? result[key].join("\r\n")
+      : result[key];
+    if (key === "active_ingredients") {
+      value = result[key]
+        .reduce((acc, curr) => [...acc, `${curr.name} ${curr.strength}`], [])
+        .join("\r\n");
+      const dosetype = document.getElementById("dosetype"),
+        ofDrug = document.getElementById("drug");
+      dosetype.innerText = result[key][0].strength.split(" ")[1].split("/")[0];
+      ofDrug.innerText = "";
+      if (result[key].length > 1) {
+        ofDrug.innerText = ` of ${result[key][0].name}`;
       }
-      if (formItem) {
-        formItem.setAttribute("rows", value.split("\r\n").length.toString());
-        formItem.value = value;
-      }
+    }
+    if (formItem) {
+      formItem.setAttribute("rows", value.split("\r\n").length.toString());
+      formItem.value = value;
     }
   }
 }
