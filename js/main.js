@@ -12,7 +12,7 @@ async function getDrug(package_ndc) {
 
 function clearForm(formId) {
   let form = document.querySelectorAll(
-    `#${formId} input[type=text], #${formId} textarea, #${formId} select`
+    `#${formId} :is(input[type=text], textarea, select)`
   );
   form.forEach((e) => {
     e.value = "";
